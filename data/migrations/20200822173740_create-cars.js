@@ -13,5 +13,5 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex) {
     // drop the whole table
-    return knex.scheme.dropTableIfExists('cars');
+    return knex.schema.dropTableIfExists('cars');
 };

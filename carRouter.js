@@ -16,7 +16,10 @@ router.get('/', async (req, res, next) => {
 // GET car by ID
 router.get('/:id', async (req, res, next) => {
     try {
-        const car = await db.select("*").from("cars").where("id", req.params.id).limit(1)
+        // using first() returns a single object, not an array
+        const car = await db.select("*").from("cars").where("id", req.params.id).first()
+        // using limit(1) returns an array with a single object in it
+        // const car = await db.select("*").from("cars").where("id", req.params.id).limit(1)
         res.status(200).json(car)
         // res.status(200).send('GET car by ID')
     } catch (error) {
